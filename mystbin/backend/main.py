@@ -51,11 +51,7 @@ if __name__ == "__main__":
         if _cli_path.exists():
             os.remove(_cli_path)
 
-    if os.environ.get("ISDOCKER") is not None:
-        config = uvicorn.Config("app:app", port=port, host="0.0.0.0")
-        # allow from all hosts when in a docker container, so that requests can be proxied in
-    else:
-        config = uvicorn.Config("app:app", port=port, host="127.0.0.1")
+    config = uvicorn.Config("app:app", port=port, host="0.0.0.0")
 
     server = uvicorn.Server(config)
 

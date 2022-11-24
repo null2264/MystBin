@@ -49,7 +49,7 @@ Alongside the above headers, there are also global ratelimits, which will return
 # Installation
 
 This site requires the following external software:
-- Python 3.8+
+- Python 3.10+
 - Node.js / yarn
 - postgresql 12+
 - Redis (optional)
@@ -101,7 +101,7 @@ After creating the database, import the schema with `psql -d (database) -f mystb
 You might need to specify the user with the -u flag.
 
 ## Setting up the backend
-To set up the backend, you'll want to cd into the `./mystbin/backend/` folder, and create a python venv. This can be accomplished with `python -m venv venv`. Make sure you're using python 3.8 +.
+To set up the backend, you'll want to cd into the `./mystbin/backend/` folder, and create a python venv. This can be accomplished with `python -m venv venv`. Make sure you're using python 3.10+.
 After creating the venv, activate it with `. ./venv/bin/activate`. Then you can proceed to install the dependancies by running `pip install -r requirements.txt`.
 
 Once the dependancies are installed, you should be able to bring the backend online with `python main.py`.
