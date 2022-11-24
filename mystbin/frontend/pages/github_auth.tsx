@@ -24,7 +24,7 @@ export const getServerSideProps = async ({ req, res, query }) => {
   }
 
   let response = await fetch(
-    `${config["site"]["backend_site"]}/users/connect/github/`,
+    `${config["site"]["backend_site"]}/users/connect/github`,
     {
       method: "POST",
       headers: headers,

@@ -27,7 +27,7 @@ export const getServerSideProps = async ({ req, res, query }) => {
     };
   }
   let response = await fetch(
-    `${config["site"]["backend_site"]}/users/connect/discord/`,
+    `${config["site"]["backend_site"]}/users/connect/discord`,
     {
       method: "POST",
       headers: headers,
