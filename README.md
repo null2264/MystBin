@@ -1,5 +1,6 @@
 <div align="center">
-    <img src="res/mystbin_logo_light_full.svg", alt="Mystbin Logo"/>
+    <img width="320" src="res/mystbin_logo_light_full.svg", alt="Mystbin Logo"/>
+    <hr>
     <p>Easily share your code or text with syntax highlighting and themes for readability.</p>
     <br>
     <p>The stable release of this can be found at <a href="https://mystb.in">mystb.in</a></p>
@@ -51,13 +52,12 @@ Alongside the above headers, there are also global ratelimits, which will return
 This site requires the following external software:
 - Python 3.10+
 - Node.js / yarn
-- postgresql 12+
+- postgresql 14+
 - Redis (optional)
 
 This guide assumes you are on a UNIX-ish platform (ex MacOS/Linux)
 
 ### The following instructions are for non-docker usage
-for docker support, come back later because currently it's a disaster.
 
 ## Setting up the config file
 copy the config-template.json into config.json.
