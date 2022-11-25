@@ -5,7 +5,6 @@ import {
 } from "@monaco-editor/react";
 import { PropsWithoutRef } from "react";
 
-
 monaco.init().then((monaco) => {
   // MystBin Dark
   monaco.editor.defineTheme("mystBinDark", {

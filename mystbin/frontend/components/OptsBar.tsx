@@ -37,8 +37,7 @@ export default function OptsBar() {
     !useMediaQuery({ query: `(max-width: 768px)` })
   );
 
-  const [uploaded, setUploaded] = useState(false)
-
+  const [uploaded, setUploaded] = useState(false);
 
   const personal = [
     {
@@ -140,17 +139,24 @@ export default function OptsBar() {
         let FD = new FormData();
 
         for (let file of paste) {
-          if (file['image'] === null || file['image'] == undefined || file['image'] === '') {
+          if (
+            file["image"] === null ||
+            file["image"] == undefined ||
+            file["image"] === ""
+          ) {
             files.push({ filename: file["title"], content: file["content"] });
-          }
-          else {
-            files.push({ filename: file["title"], content: file["content"], attachment: file['image'].name });
-            FD.append('images', file['image'], file['image'].name)
+          } else {
+            files.push({
+              filename: file["title"],
+              content: file["content"],
+              attachment: file["image"].name,
+            });
+            FD.append("images", file["image"], file["image"].name);
           }
         }
 
-        let data = { "files": files, "password": paste.password }
-        FD.append('data', JSON.stringify(data))
+        let data = { files: files, password: paste.password };
+        FD.append("data", JSON.stringify(data));
 
         const headers = {
           "Content-Type": "multipart/form-data",
@@ -160,7 +166,7 @@ export default function OptsBar() {
           headers["Authorization"] = cookieCutter.get("auth");
         }
 
-        axios( {
+        axios({
           url: config["site"]["backend_site"] + "/rich-paste",
           method: "POST",
           headers: headers,
@@ -174,13 +180,12 @@ export default function OptsBar() {
             setUploaded(false);
 
             console.error(r.status);
-            console.log(r.data)
+            console.log(r.data);
           })
           .then((d) => {
             setUploaded(true);
 
             if (d && d.id) {
-
               let path = `/${d.id}`;
               let full = window.location.origin + path;
               navigator.clipboard.writeText(full).then(() => {

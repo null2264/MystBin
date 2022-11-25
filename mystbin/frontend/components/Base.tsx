@@ -12,7 +12,6 @@ export default function Base(props: PropsWithChildren<{ className: string }>) {
 
   return (
     <div className={styles.Base}>
-
       <OptsBar />
       <TipModal />
       <main className={className}>{children}</main>

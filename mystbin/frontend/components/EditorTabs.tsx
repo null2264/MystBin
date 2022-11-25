@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import MonacoEditor from "./MonacoEditor";
 import styles from "../styles/EditorTabs.module.css";
-import {Dropdown, Toast, ToastHeader} from "react-bootstrap";
+import { Dropdown, Toast, ToastHeader } from "react-bootstrap";
 import PasswordModal from "./PasswordModal";
 import Tab from "./Tab";
 import NewTabButton from "./NewTabButton";
@@ -12,9 +12,9 @@ import { Button } from "@material-ui/core";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import React from "react";
 import SettingsIcon from "@material-ui/icons/Settings";
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
-import {ImageRounded} from "@material-ui/icons";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import LibraryAddCheckIcon from "@material-ui/icons/LibraryAddCheck";
+import { ImageRounded } from "@material-ui/icons";
 
 const languages = {
   py: "python",
@@ -68,7 +68,9 @@ export default function EditorTabs({
   hasPassword = false,
   pid = null,
 }: TabInfo) {
-  const [value, setValue] = useState([{ title: "file.txt", content: "", image: "" },]);
+  const [value, setValue] = useState([
+    { title: "file.txt", content: "", image: "" },
+  ]);
   const [currTab, setCurrTab] = useState(0);
   const [charCountToast, setCharCountToast] = useState(false);
   const [passwordModal, setPasswordModal] = useState(!!hasPassword);
@@ -79,73 +81,68 @@ export default function EditorTabs({
   const [initialState, setInitialState] = useState(false);
   const [langDropDown, setLangDropDown] = useState(false);
   const [dropLang, setDropLang] = useState(null);
-  const [image, setImage] = useState(null)
-  const [showImage, setShowImage] = useState(null)
+  const [image, setImage] = useState(null);
+  const [showImage, setShowImage] = useState(null);
 
   const tabRef = useRef();
   const imageRef = useRef();
   const DnDRef = useRef();
 
   async function handleDnD(e, index) {
-    e.preventDefault()
+    e.preventDefault();
 
     if (!!id) {
       return;
     }
 
-    if(e.dataTransfer && e.dataTransfer.files.length != 0) {
-      let file = e.dataTransfer.files[0]
+    if (e.dataTransfer && e.dataTransfer.files.length != 0) {
+      let file = e.dataTransfer.files[0];
 
       if (file.size / 1024 / 1024 > 4) {
-        alert('You can only upload files 4Mb in size or less.');
+        alert("You can only upload files 4Mb in size or less.");
         return;
-
       }
 
       let data = await file.text();
       let name = file.name;
 
       let newValue = [...value];
-      newValue[index]['title'] = name;
-      newValue[index]['content'] = data;
+      newValue[index]["title"] = name;
+      newValue[index]["content"] = data;
 
       setValue(newValue);
     }
-
   }
-
 
   function handleSetImage(e) {
-    let file = e.currentTarget.files[0]
-    let allowed = ['image/gif', 'image/jpeg', 'image/png'];
+    let file = e.currentTarget.files[0];
+    let allowed = ["image/gif", "image/jpeg", "image/png"];
 
-    if (!!file && !allowed.includes(file['type'])) {
-      alert('Only images are currently supported.')
-    }
-    else if (file.size / 1024 / 1024 > 4) {
-      alert('You can only upload files 4Mb in size or less.')
-    }
-    else {
-      setImage(file)
+    if (!!file && !allowed.includes(file["type"])) {
+      alert("Only images are currently supported.");
+    } else if (file.size / 1024 / 1024 > 4) {
+      alert("You can only upload files 4Mb in size or less.");
+    } else {
+      setImage(file);
     }
   }
 
-  useEffect( () => {
+  useEffect(() => {
     let newValue = [...value];
-    newValue[currTab]['image'] = image
+    newValue[currTab]["image"] = image;
 
-    setValue(newValue)
-  }, [image])
+    setValue(newValue);
+  }, [image]);
 
   pasteDispatcher.dispatch({ paste: value });
   const maxCharCount = config["paste"]["character_limit"];
 
-  useEffect( () => {
+  useEffect(() => {
     if (initialData !== null && !initialState) {
       setValue(initialData);
       setInitialState(true);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (sessionStorage.getItem("pasteCopy") !== null) {
@@ -193,12 +190,11 @@ export default function EditorTabs({
 
     try {
       if (response.status === 200) {
-
         for (let file of paste["files"]) {
           actualData.push({
             title: file["filename"],
             content: file["content"],
-            image: file['attachment']
+            image: file["attachment"],
           });
         }
         setValue(actualData);
@@ -218,10 +214,24 @@ export default function EditorTabs({
   return (
     <>
       <div>
-      {value.map((v, i) => (
-          <div className={styles.attachmentImageBackdrop} onClick={(e) => setShowImage(-1)} style={{ display: showImage === i ? "flex" : "none",}}>
-            <img className={styles.attachmentImage} src={value[i]['image']} style={{ display: showImage === i ? "block" : "none",}}/>
-            <a className={styles.attachmentLink} href={value[i]['image']} target={"_blank"}>Open Original</a>
+        {value.map((v, i) => (
+          <div
+            className={styles.attachmentImageBackdrop}
+            onClick={(e) => setShowImage(-1)}
+            style={{ display: showImage === i ? "flex" : "none" }}
+          >
+            <img
+              className={styles.attachmentImage}
+              src={value[i]["image"]}
+              style={{ display: showImage === i ? "block" : "none" }}
+            />
+            <a
+              className={styles.attachmentLink}
+              href={value[i]["image"]}
+              target={"_blank"}
+            >
+              Open Original
+            </a>
           </div>
         ))}
       </div>
@@ -254,25 +264,37 @@ export default function EditorTabs({
                 setValue(newValue);
               }}
             >
-              <input ref={imageRef} type="file" style={{display: 'none'}} onChange={e => (handleSetImage(e))} />
-              {!pid && value[i]['image'] === null || value[i]['image'] === "" ?
-              <div className={styles.addImageButtonContainer} onClick={(e) => {
-              e.preventDefault();
-              // @ts-ignore
-                imageRef.current.click();
+              <input
+                ref={imageRef}
+                type="file"
+                style={{ display: "none" }}
+                onChange={(e) => handleSetImage(e)}
+              />
+              {(!pid && value[i]["image"] === null) ||
+              value[i]["image"] === "" ? (
+                <div
+                  className={styles.addImageButtonContainer}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    // @ts-ignore
+                    imageRef.current.click();
+                  }}
+                >
+                  <AddBoxIcon className={styles.addImagesButtonNS}></AddBoxIcon>
+                </div>
+              ) : null}
 
-            }} >
-                <AddBoxIcon className={styles.addImagesButtonNS} ></AddBoxIcon>
-              </div> : null}
-
-              { value[i]['image'] !== 'None' && value[i]['image'] !== null && value[i]['image'] !== undefined && value[i]['image'] !== "" ?
-                  <div
-                      className={styles.addImageButtonContainer}
-                      onClick={() => setShowImage(i)}
-                  >
-                    <ImageRounded className={styles.addImagesButtonNS}/>
-                  </div>
-                  : null }
+              {value[i]["image"] !== "None" &&
+              value[i]["image"] !== null &&
+              value[i]["image"] !== undefined &&
+              value[i]["image"] !== "" ? (
+                <div
+                  className={styles.addImageButtonContainer}
+                  onClick={() => setShowImage(i)}
+                >
+                  <ImageRounded className={styles.addImagesButtonNS} />
+                </div>
+              ) : null}
 
               {!!pid ? (
                 <div className={styles.dropdownContainer} ref={tabRef}>
@@ -330,8 +352,8 @@ export default function EditorTabs({
             id={`tab-${i}`}
           >
             <div
-                onDragOver={(e) => e.preventDefault()}
-                onDrop={async (e) => await handleDnD(e, i)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={async (e) => await handleDnD(e, i)}
             >
               <MonacoEditor
                 language={lang[i]}

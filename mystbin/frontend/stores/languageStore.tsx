@@ -38,7 +38,7 @@ const languageIndex = {
   yml: "yml",
   yaml: "yml",
   ino: "arduino",
-  arduino: "arduino"
+  arduino: "arduino",
 };
 
 export default function getLanguage(language: string) {
