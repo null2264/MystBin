@@ -48,6 +48,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           # Enable linters
           auto_fix: true
+          commit_message: "refactor: Fix code style issues with ${linter}"
           git_name: PythonistaGuild Linter
           # eslint: true
           # eslint_dir: ./mystbin/frontend/
