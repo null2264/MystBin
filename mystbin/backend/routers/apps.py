@@ -193,7 +193,7 @@ async def auth_from_github(request: MystbinRequest) -> Response | UJSONResponse:
         data = await resp.json()
         email = []
         for entry in data:
-            if "users.noreply.github.com" in entry["email"]:
+            if entry["email"] in ("users.noreply.github.com",):
                 continue
 
             email.append(entry["email"])
