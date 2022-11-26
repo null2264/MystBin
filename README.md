@@ -2,11 +2,7 @@
     <img width="320" src="res/mystbin_logo_light_full.svg", alt="Mystbin Logo"/>
     <hr>
     <p>Easily share your code or text with syntax highlighting and themes for readability.</p>
-    <br>
-    <p>The stable release of this can be found at <a href="https://mystb.in">mystb.in</a></p>
-    <br>
-    <p>The unstable version (up to date with the master branch) of this can be found at <a href="https://beta.mystb.in">beta.mystb.in</a></p>
-    <br>
+    <p>The beta version of MystBin can be found in the <a href="https://github.com/null2264/MystBin/tree/dev">dev</a> branch</p>
     <a href="https://www.python.org">
         <img src="https://img.shields.io/badge/Python-3.10-blue.svg" />
     </a>
