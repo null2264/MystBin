@@ -13,9 +13,6 @@
     <a href="LICENSE">
         <img src="https://img.shields.io/badge/license-GPL--3.0-blue.svg" />
     </a>
-    <a href="https://discord.gg/RAKc3HF">
-        <img src="https://img.shields.io/discord/490948346773635102?color=%237289DA&label=Pythonista&logo=discord&logoColor=white" alt="Discord Server" />
-    </a>
 </div>
 <div align="center">
     <a href="https://github.com/null2264/actions?query=workflow%3AAnalyze">
