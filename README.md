@@ -8,7 +8,7 @@
     <p>The unstable version (up to date with the master branch) of this can be found at <a href="https://beta.mystb.in">beta.mystb.in</a></p>
     <br>
     <a href="https://www.python.org">
-        <img src="https://img.shields.io/badge/Python-3.8%20%7C%203.9-blue.svg" />
+        <img src="https://img.shields.io/badge/Python-3.10-blue.svg" />
     </a>
     <a href="LICENSE">
         <img src="https://img.shields.io/badge/license-GPL--3.0-blue.svg" />
@@ -18,11 +18,11 @@
     </a>
 </div>
 <div align="center">
-    <a href="https://github.com/PythonistaGuild/actions?query=workflow%3AAnalyze">
-        <img src="https://github.com/PythonistaGuild/MystBin/workflows/Analyze/badge.svg" />
+    <a href="https://github.com/null2264/actions?query=workflow%3AAnalyze">
+        <img src="https://github.com/null2264/MystBin/workflows/Analyze/badge.svg" />
     </a>
-    <a href="https://github.com/PythonistaGuild/MystBin/actions?query=workflow%3A%22Lint+Code+Base%22">
-        <img src="https://github.com/PythonistaGuild/MystBin/workflows/Lint%20Code%20Base/badge.svg" />
+    <a href="https://github.com/null2264/MystBin/actions?query=workflow%3A%22Lint+Code+Base%22">
+        <img src="https://github.com/null2264/MystBin/workflows/Lint%20Code%20Base/badge.svg" />
     </a>
 </div>
 
